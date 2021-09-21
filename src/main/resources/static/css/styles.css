@@ -1,0 +1,51 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: arial;
+}
+
+.navbar {
+    top: 0;
+    background-color: blue;
+    color: white;
+    height: 64px;
+}
+
+.navbar-links {
+    float: left;
+    position: absolute;
+    top: 30%;
+    left: 10px;
+    justify-content: space-between;
+    display: flex;
+    color: white;
+    text-decoration: none;
+    font-size: 24px;
+    text-transform: uppercase;
+}
+
+.navbar-link {
+    margin-right: 12px;
+    text-decoration: none;
+}
+
+.section {
+    height: 600px;
+    margin: auto;
+    width: 100%;
+    padding: 10px;
+    text-align: center;
+    color: white;
+}
+
+.section-header {
+    font-size: 64px;
+}
+
+.section-subtitle {
+    font-size: 32px;
+}
+
+.section-text {
+    font-size: 14px;
+}
