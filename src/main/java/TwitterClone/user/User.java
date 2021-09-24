@@ -1,16 +1,24 @@
 package TwitterClone.user;
 
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
 //rename table to users
+@Entity(name = "users")
+@Table(name = "users")
 public class User {
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private int id;
     private String username;
     private String password;
+    @OneToMany(cascade = CascadeType.ALL)
     private List<Tweet> tweets;
+    @OneToMany(cascade = CascadeType.ALL)
     private List<User> followers;
+    @OneToMany(cascade = CascadeType.ALL)
     private List<User> following;
 
     public User(String username, String password) {
@@ -73,5 +81,10 @@ public class User {
 
     public void setFollowing(List<User> following) {
         this.following = following;
+    }
+
+    @Override
+    public String toString() {
+        return username;
     }
 }

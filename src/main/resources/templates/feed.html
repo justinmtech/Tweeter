@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>TwitterClone - Home</title>
@@ -10,22 +10,27 @@
 <nav class="navbar">
     <div class="navbar-items">
         <div class="navbar-item">
-            <a href="http://localhost/home" class="navbar-link">Home</a>
+            <a href="http://localhost:8080/" class="navbar-link">Home</a>
         </div>
         <div class="navbar-item">
-            <a href="http://localhost/feed" class="navbar-link">Feed</a>
+            <a href="http://localhost:8080/feed" class="navbar-link">Feed</a>
         </div>
     </div>
 </nav>
 
 <section class="section" id="feed-section">
     <div class="section-content" id="feed-content"></div>
-    <div class="section-header" id="feed-header">Twitter Clone</div>
-    <div class="section-subtitle" id="feed-subtitle">A practice twitter clone.</div>
-    <div class="section-text" id="feed-text"></div>
-    <div class="section-button" id="feed-section-button">
-        <a href="http://localhost/register" class="section-button-item" id="feed-signup-button">CREATE ACCOUNT</a>
+    <div class="section-header" id="feed-header">Feed</div>
+    <div class="section-text" id="feed-write-tweet">
+        <form action="#" method="post" th:action="@{/feed}" th:object="${tweet}">
+            <label>Write your tweet</label>
+            <input type="text" maxlength="255" th:field="${tweet.text}">
+            <button type="submit">Tweet</button>
+        </form>
     </div>
+    <ul class="section-text" id="feed-tweets">
+        <li class="section-text" id="tweet" th:each="tweet : ${feed.tweets}" th:text="${tweet}"></li>
+    </ul>
 </section>
 
 

@@ -1,19 +1,23 @@
 package TwitterClone.user;
 
+import TwitterClone.services.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
+
+import javax.persistence.*;
 import java.util.Date;
 
-public class Tweet {
-    private String text;
-    //onetomany
+@Entity
+public class Tweet implements Comparable<Tweet> {
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    private int id;
+    @ManyToOne
     private User user;
+    private String text;
     private Date timestamp;
 
-    public Tweet(String text, User user) {
-        this.text = text;
-        this.user = user;
-    }
-
     public Tweet() {
+        this.timestamp = new Date();
     }
 
     public String getText() {
@@ -24,6 +28,22 @@ public class Tweet {
         this.text = text;
     }
 
+    public Date getTimestamp() {
+        return timestamp;
+    }
+
+    public void setTimestamp(Date timestamp) {
+        this.timestamp = timestamp;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
     public User getUser() {
         return user;
     }
@@ -32,11 +52,23 @@ public class Tweet {
         this.user = user;
     }
 
-    public Date getTimestamp() {
-        return timestamp;
+    @Override
+    public int compareTo(Tweet tweet2) {
+        if (timestamp.before(tweet2.timestamp)) {
+            return 1;
+        }
+
+        else if (this.timestamp.after(tweet2.timestamp)) {
+            return -1;
+        }
+
+        else {
+            return 0;
+        }
     }
 
-    public void setTimestamp(Date timestamp) {
-        this.timestamp = timestamp;
+    @Override
+    public String toString() {
+        return user + "\n" + text + "\n" + timestamp;
     }
 }

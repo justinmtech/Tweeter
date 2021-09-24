@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>TwitterClone - Home</title>
+    <link rel="stylesheet" type="text/css" href="css/styles.css">
+</head>
+<body>
+
+<nav class="navbar">
+    <div class="navbar-items">
+        <div class="navbar-item">
+            <a href="http://localhost:8080/" class="navbar-link">Home</a>
+        </div>
+        <div class="navbar-item">
+            <a href="http://localhost:8080/feed" class="navbar-link">Feed</a>
+        </div>
+    </div>
+</nav>
+
+<section class="section" id="register-section">
+    <div class="section-content" id="register-content"></div>
+    <div class="section-header" id="register-header">Create Account</div>
+    <div class="section-subtitle" id="register-subtitle">Fill in your information to create an account!</div>
+    <div class="section-text" id="register-text"></div>
+    <div class="section-form">
+        <form class="section-form" th:object="${user}" method="post" th:action="@{/register}">
+            <label class="form-label">Username</label>
+            <input class="form-input" th:field="*{username}" type="email">
+            <label class="form-label">Password</label>
+            <input class="form-input" th:field="*{password}" type="password">
+            <div class="section-button" id="register-section-button">
+                <button class="section-button-item" id="register-signup-button" type="submit">Submit</button>
+            </div>
+        </form>
+    </div>
+</section>
+
+
+</body>
+</html>

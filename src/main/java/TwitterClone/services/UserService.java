@@ -3,6 +3,8 @@ package TwitterClone.services;
 import TwitterClone.repositories.UserRepository;
 import TwitterClone.user.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -28,4 +30,16 @@ public class UserService {
     public void deleteUser(User user) {
         userRepository.delete(user);
     }
+
+    public User getCurrentAuthenticatedUser() {
+        try {
+            String username = SecurityContextHolder.getContext().getAuthentication().getName();
+            return getAllUsers().stream().filter(u -> u.getUsername().equals(username)).findFirst().orElseThrow(NullPointerException::new);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+
 }
