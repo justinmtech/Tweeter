@@ -27,9 +27,9 @@ public class Feed {
     }
 
     private List<Tweet> getOrderedTweets() {
-        for (int i = 0; i < 1 + user.getFollowing().size(); i++) {
             tweets.addAll(user.getTweets());
             if (user.getFollowing().size() > 0) {
+            for (int i = 0; i < user.getFollowing().size(); i++) {
                 tweets.addAll(user.getFollowing().get(i).getTweets());
             }
         }

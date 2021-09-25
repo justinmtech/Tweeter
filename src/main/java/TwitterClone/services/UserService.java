@@ -19,7 +19,7 @@ public class UserService {
         return (List<User>) userRepository.findAll();
     }
 
-    public User getUserById(int id) {
+    public User getUserById(String id) {
         return userRepository.findById(id).orElseThrow(NullPointerException::new);
     }
 

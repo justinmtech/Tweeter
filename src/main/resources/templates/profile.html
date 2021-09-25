@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>TwitterClone - Home</title>
+    <link rel="stylesheet" type="text/css" href="css/styles.css">
+</head>
+<body>
+
+<nav class="navbar">
+    <div class="navbar-items">
+        <div class="navbar-item">
+            <a href="http://localhost:8080/" class="navbar-link">Home</a>
+        </div>
+        <div class="navbar-item">
+            <a href="http://localhost:8080/feed" class="navbar-link">Feed</a>
+        </div>
+    </div>
+</nav>
+
+<section class="section" id="home-section">
+    <div class="section-content" id="home-content"></div>
+    <div class="section-header" id="home-header">Profile</div>
+    <div class="section-text" id="profile-container" th:object="${user}">
+        <div class="section-text" id="profile-username" th:text="*{username}"></div>
+        <div class="section-text" id="profile-followers" th:text="*{followers.size()}"></div>
+            <div class="section-text" id="profile-follow">
+                <form action="#" th:action="@{'/user/' + ${user.username}}" th:object="${doFollow}" method="post">
+                    <label>Follow</label>
+                    <input type="checkbox" th:field="${doFollow}" value="yes">
+                    <button type="submit">Follow</button>
+                </form>
+            </div>
+            <div class="section-text" id="profile-tweets">
+                <ul>
+                    <li class="section-text" id="tweet" th:each="tweet : ${user.tweets}" th:text="${tweet}"></li>
+                </ul>
+            </div>
+    </div>
+</section>
+
+
+</body>
+</html>
