@@ -9,14 +9,7 @@ import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 
-//The feed will display all tweets from followed users
-//What does it need to know?
-//- The user requesting the feed
-//- That user's followed users (List<User> following)
-//- All of the tweets of followed users (List<Tweet> tweets)
-//- Order the tweets based on time
 public class Feed {
-
     private final User user;
     private List<Tweet> tweets;
 
@@ -27,15 +20,14 @@ public class Feed {
     }
 
     private List<Tweet> getOrderedTweets() {
-            tweets.addAll(user.getTweets());
-            if (user.getFollowing().size() > 0) {
-            for (int i = 0; i < user.getFollowing().size(); i++) {
-                tweets.addAll(user.getFollowing().get(i).getTweets());
-            }
+        tweets.addAll(user.getTweets());
+        if (user.getFollowing().size() > 0) {
+        for (int i = 0; i < user.getFollowing().size(); i++) {
+            tweets.addAll(user.getFollowing().get(i).getTweets());
         }
-            Collections.sort(tweets);
-            return tweets;
-
+    }
+        Collections.sort(tweets);
+        return tweets;
     }
 
     public List<Tweet> getTweets() {

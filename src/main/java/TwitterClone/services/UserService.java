@@ -15,10 +15,6 @@ public class UserService {
     @Autowired
     UserRepository userRepository;
 
-    public List<User> getAllUsers() {
-        return (List<User>) userRepository.findAll();
-    }
-
     public User getUserById(String id) {
         return userRepository.findById(id).orElseThrow(NullPointerException::new);
     }
@@ -27,14 +23,10 @@ public class UserService {
         userRepository.save(user);
     }
 
-    public void deleteUser(User user) {
-        userRepository.delete(user);
-    }
-
     public User getCurrentAuthenticatedUser() {
         try {
             String username = SecurityContextHolder.getContext().getAuthentication().getName();
-            return getAllUsers().stream().filter(u -> u.getUsername().equals(username)).findFirst().orElseThrow(NullPointerException::new);
+            return getUserById(username);
         } catch (Exception e) {
             e.printStackTrace();
             return null;

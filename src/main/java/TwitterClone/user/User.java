@@ -9,9 +9,6 @@ import java.util.List;
 @Entity(name = "users")
 @Table(name = "users")
 public class User {
-    //@Id
-    //@GeneratedValue(strategy = GenerationType.SEQUENCE)
-    //private int id;
     @Id
     private String username;
     private String password;
