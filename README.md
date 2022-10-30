@@ -1,4 +1,4 @@
-# Twitter-Clone
+# Tweeter
 A simple replication of Twitter built in Spring.
 
 # Setup
